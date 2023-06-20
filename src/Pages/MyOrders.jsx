@@ -1,7 +1,7 @@
 
 function MyOrders() {
   return (
-    <div>MyOrders</div>
+    <div className="bg-red-100">MyOrders</div>
   )
 }
 

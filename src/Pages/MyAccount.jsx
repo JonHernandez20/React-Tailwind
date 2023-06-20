@@ -1,7 +1,7 @@
 
 function MyAccount() {
   return (
-    <div>MyAccount</div>
+    <div className="bg-red-100">MyAccount</div>
   )
 }
 
