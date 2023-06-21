@@ -1,7 +1,9 @@
 
 import { NavLink } from "react-router-dom"
+import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { ShoppingCartContext } from "../Context";
 import { useContext } from "react";
+
 
 function Navbar() {
     const context = useContext(ShoppingCartContext);
@@ -81,8 +83,9 @@ function Navbar() {
                     Sign In
                 </NavLink>
             </li>
-            <li>
-                🛒 {context.count}
+            <li className="flex items-center gap-1">
+                <AiOutlineShoppingCart className="text-xl"/>
+                {context.count}
             </li>
         </ul>
     </nav>
