@@ -8,7 +8,7 @@ import MyOrders from './MyOrders';
 import NotFound from './NotFound';
 import SignIn from './SignIn';
 import Navbar from '../Components/Navbar';
-import '../App.css'
+import '../Styles/App.css'
 
 const AppRoutes = () => {
   let routes = useRoutes([
