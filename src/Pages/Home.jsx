@@ -9,6 +9,7 @@ function Home() {
     fetch('https://api.escuelajs.co/api/v1/products')
       .then(res => res.json())
       .then(data => setItems(data))
+      // .then(data => console.log(data.category))
   }, [])
 
   return (
