@@ -6,7 +6,6 @@ import { ShoppingCartContext } from "../Context"
 
 function Detail() {
   const { openFunc, closeDetail, productShow, } = useContext(ShoppingCartContext);
-  console.log(productShow);
   
   return (
     <aside 
@@ -23,7 +22,8 @@ function Detail() {
           src={productShow?.images} alt={productShow.title}/>
         </figure>
         <p
-        className='flex flex-col p-3'>
+        className='flex flex-col p-3'
+        >
           <span className='font-bold text-2xl'>$ {productShow.price}</span>
           <span className='font-mono text-md'>{productShow.title}</span>
           <span className='text-slate-700	font-light text-sm'>{productShow.description}</span>
