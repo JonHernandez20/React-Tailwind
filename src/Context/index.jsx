@@ -7,6 +7,10 @@ export const ShoppingCartContext = createContext();
 export const ShoppingCartProvider = ({ children }) => {
     const [count, setCount] = useState(0);
     const [items, setItems] = useState(null);
+    const [openFunc, setOpenFunc] = useState(false);
+
+    const openDetail = () => setOpenFunc(true);
+    const closeDetail = () => setOpenFunc(false);
 
     useEffect(() => {
         fetch('https://api.escuelajs.co/api/v1/products')
@@ -19,7 +23,10 @@ export const ShoppingCartProvider = ({ children }) => {
             count,
             setCount,
             items,
-            setItems
+            setItems,
+            openDetail,
+            closeDetail,
+            openFunc,
         }}>
             { children }
         </ShoppingCartContext.Provider>
