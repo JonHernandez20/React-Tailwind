@@ -17,7 +17,7 @@ function Checkout() {
               <AiFillCloseCircle />
             </div>
         </div>
-        <div className='grid px-2 gap-2'>
+        <div className='grid px-2 gap-2 overflow-y-scroll'>
             {
                 addProducts.map(item => (
                     <OrderCard 

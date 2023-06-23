@@ -1,6 +1,7 @@
 
 import { useContext } from 'react'
 import { GrAdd } from 'react-icons/gr'
+import { MdOutlineShoppingCartCheckout } from 'react-icons/md'
 import { ShoppingCartContext } from '../Context'
 
 const Card = (prod) => {
@@ -19,6 +20,28 @@ const Card = (prod) => {
     openDetail();
   }
 
+  const render = (id) => {
+    const isInCar = addProducts.filter(product=> product.id === id).length > 0;
+    if (isInCar) {
+      return (
+        <div className='absolute top-0 right-0 flex justify-center items-center bg-green-600 w-6 h-6 rounded-full m-2 p-1'>
+          <button className='text-white w-full h-full cursor-not-allowed	'>
+            <MdOutlineShoppingCartCheckout />
+          </button>
+        </div>
+      );
+
+    } else {
+      return (
+        <div className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1'>
+          <button onClick={(event) => addProductsToCart(prod.data, event) }>
+            <GrAdd />
+          </button>
+        </div>
+      );
+    }
+  }
+
   return (
     <div 
     className='bg-white cursor-pointer w-56 h-60 rounded-lg'>
@@ -29,11 +52,7 @@ const Card = (prod) => {
             alt='headphones'
             onClick={() => { productToShow() }}
             />
-            <div className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1'>
-              <button onClick={(event) => addProductsToCart(prod.data, event) }>
-                <GrAdd />
-              </button>
-            </div>
+            { render(prod.data.id) }
         </figure>
         <p className='flex justify-between'>
             <span className='text-sm font-light'>{ prod.data?.title}</span>
