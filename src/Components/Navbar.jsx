@@ -6,7 +6,7 @@ import { useContext } from "react";
 
 
 function Navbar() {
-    const context = useContext(ShoppingCartContext);
+    const { addProducts } = useContext(ShoppingCartContext);
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-white">
         <ul className="flex items-center gap-4">
@@ -85,7 +85,7 @@ function Navbar() {
             </li>
             <li className="flex items-center gap-1">
                 <AiOutlineShoppingCart className="text-xl"/>
-                {context.count}
+                {addProducts.length}
             </li>
         </ul>
     </nav>

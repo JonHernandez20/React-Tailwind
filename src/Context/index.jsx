@@ -16,6 +16,11 @@ export const ShoppingCartProvider = ({ children }) => {
     const openDetail = () => setOpenFunc(true);
     const closeDetail = () => setOpenFunc(false);
 
+    // Estado que identifica el menu si esta abierto o cerrado.
+    const [menuFunc, setMenuFunc] = useState(false);
+    const openMenu = () => setMenuFunc(true);
+    const closeMenu = () => setMenuFunc(false);
+
     // Mostrar producto en Aside
     const [productShow, setProductShow] = useState({});
 
@@ -42,6 +47,10 @@ export const ShoppingCartProvider = ({ children }) => {
             setProductShow,
             addProducts,
             setAddProducts,
+            openMenu,
+            closeMenu,
+            menuFunc,
+            setMenuFunc,
         }}>
             { children }
         </ShoppingCartContext.Provider>
