@@ -2,10 +2,11 @@
 import { useContext } from "react"
 import { AiFillCloseCircle } from "react-icons/ai"
 import { ShoppingCartContext } from "../Context"
+import OrderCard from "./OrderCard";
 
 
 function Checkout() {
-  const { menuFunc, closeMenu } = useContext(ShoppingCartContext);
+  const { menuFunc, closeMenu, addProducts } = useContext(ShoppingCartContext);
   
   return (
     <aside 
@@ -15,6 +16,18 @@ function Checkout() {
             <div className='text-2xl cursor-pointer' onClick={() => closeMenu()}>
               <AiFillCloseCircle />
             </div>
+        </div>
+        <div className='grid px-2 gap-2'>
+            {
+                addProducts.map(item => (
+                    <OrderCard 
+                        key={item.id}
+                        name={item.title}
+                        price={item.price}                    
+                        imageUrl={item.images}
+                    />
+                ))
+            }
         </div>
     </aside>
   )
