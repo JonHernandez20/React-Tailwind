@@ -22,9 +22,9 @@ function Checkout() {
       totalProducts: addProducts.length,
       priceTotal: TotalPrice(addProducts)
     }
-    setOrder([orderToAdd]);
+    setOrder([...order, orderToAdd]);
     setAddProducts([]);
-    console.log(order)
+    closeMenu();
   };
 
   return (
