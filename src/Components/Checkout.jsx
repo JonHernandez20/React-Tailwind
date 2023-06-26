@@ -2,6 +2,7 @@
 import { useContext } from "react"
 import { AiFillCloseCircle } from "react-icons/ai"
 import { ShoppingCartContext } from "../Context"
+import { TotalPrice } from "../Hooks/TotalPrice";
 import OrderCard from "./OrderCard";
 
 
@@ -35,6 +36,12 @@ function Checkout() {
                     />
                 ))
             }
+        </div>
+        <div className='px-6 bg-blue-400 w-full absolute bottom-[.5px] left-0 rounded-lg h-[40px]'>
+          <p className='flex justify-between items-center h-full text-1xl'>
+            <span className='font-normal'>Total:</span>
+            <span className='font-bold'>${TotalPrice(addProducts)}</span>
+          </p>
         </div>
     </aside>
   )
