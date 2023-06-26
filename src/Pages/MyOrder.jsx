@@ -9,6 +9,10 @@ import Layout from "../Components/Layout"
 function MyOrder() {
 
   const { order } = useContext(ShoppingCartContext)
+  const pathOrder = window.location.pathname;
+  let indexPath = pathOrder.substring(pathOrder.lastIndexOf('/') + 1);
+  if (indexPath === 'last') indexPath = order?.length - 1;
+
 
   return (
     <Layout>
@@ -21,7 +25,7 @@ function MyOrder() {
       
       <div className='grid px-2 gap-2 overflow-y-scroll'>
         {
-            order?.slice(-1)[0].products.map(item => (
+            order?.[indexPath]?.products.map(item => (
                 <OrderCard 
                     key={item.id}
                     id={item.id}

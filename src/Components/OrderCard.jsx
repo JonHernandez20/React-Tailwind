@@ -19,7 +19,7 @@ const OrderCard = (props) => {
                 <p className='text-sm font-light'>{name}</p>
             </div>
             <div className='flex items-center gap-2'>
-                <p className='text-lg font-medium'>{price}</p>
+                <p className='text-lg font-medium'>${price}</p>
                 {renderIconDelete}
             </div>
         </div>

@@ -11,16 +11,16 @@ function MyOrders() {
 
   return (
     <Layout>
-      <h1>My Orders 🐬</h1>
+      <h1 className='font-bold mb-5'>My Orders</h1>
       {
-        order?.map((order, index) => {
-          <Link key={index} to={`/myOrders/${order.id}`}>
+        order?.map((order, index) => (
+          <Link key={index} to={`/myOrders/${index}`}>
             <OrderCards 
               totalPrice={order.totalPrice}
-              totalProducts={order.totalProducts}
+              totalProducts={order.priceTotal}
             />
           </Link>
-        })
+        ))
       }
     </Layout>
   )
