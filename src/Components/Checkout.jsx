@@ -1,5 +1,6 @@
 
 import { useContext } from "react"
+import { Link } from "react-router-dom";
 import { AiFillCloseCircle } from "react-icons/ai"
 import { ShoppingCartContext } from "../Context"
 import { TotalPrice } from "../Hooks/TotalPrice";
@@ -21,9 +22,9 @@ function Checkout() {
       totalProducts: addProducts.length,
       priceTotal: TotalPrice(addProducts)
     }
-
-    setOrder([...order, orderToAdd]);
+    setOrder([orderToAdd]);
     setAddProducts([]);
+    console.log(order)
   };
 
   return (
@@ -50,15 +51,17 @@ function Checkout() {
             }
         </div>
         <div className='grid p-4 w-full absolute bottom-[.5px] left-0 rounded-lg'>
-          <p className='flex justify-between h-full p-1 bg-white mb-2'>
+          <p className='flex justify-between h-full px-4 py-2 bg-white'>
             <span className='font-light'>Total:</span>
             <span className='font-bold'>${TotalPrice(addProducts)}</span>
           </p>
-          <button onClick={() => {
-            handleCheckout();
-          }}
-          className='bg-black text-white duration-300 rounded-lg w-full p-3 font-light'
-          >Checkout</button>
+          <Link to={'/myOrders/last'}>
+            <button onClick={() => {
+              handleCheckout();
+            }}
+            className='bg-black text-white duration-300 rounded-lg w-full p-3 font-light'
+            >Checkout</button>
+          </Link>
         </div>
     </aside>
   )
