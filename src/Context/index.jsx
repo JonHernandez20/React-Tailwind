@@ -27,6 +27,9 @@ export const ShoppingCartProvider = ({ children }) => {
     // Agrega productos al carrito
     const [addProducts, setAddProducts] = useState([]);
 
+    // Shopping order
+    const [order, setOrder] = useState([])
+
     // Quita el error de 'children'.
     useEffect(() => {
         fetch('https://api.escuelajs.co/api/v1/products')
@@ -51,6 +54,8 @@ export const ShoppingCartProvider = ({ children }) => {
             closeMenu,
             menuFunc,
             setMenuFunc,
+            order,
+            setOrder,
         }}>
             { children }
         </ShoppingCartContext.Provider>

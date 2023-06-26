@@ -7,12 +7,24 @@ import OrderCard from "./OrderCard";
 
 
 function Checkout() {
-  const { menuFunc, closeMenu, addProducts, setAddProducts } = useContext(ShoppingCartContext);
+  const { menuFunc, closeMenu, addProducts, setAddProducts, setOrder, order } = useContext(ShoppingCartContext);
   
   const deleteProduct = (id) => {
     const filterProducts = addProducts.filter(product => product.id != id);
     setAddProducts(filterProducts);
   }
+
+  const handleCheckout = () => {
+    const orderToAdd = {
+      date: '01.02.23',
+      products: addProducts,
+      totalProducts: addProducts.length,
+      priceTotal: TotalPrice(addProducts)
+    }
+
+    setOrder([...order, orderToAdd]);
+    setAddProducts([]);
+  };
 
   return (
     <aside 
@@ -37,11 +49,16 @@ function Checkout() {
                 ))
             }
         </div>
-        <div className='px-6 bg-blue-400 w-full absolute bottom-[.5px] left-0 rounded-lg h-[40px]'>
-          <p className='flex justify-between items-center h-full text-1xl'>
-            <span className='font-normal'>Total:</span>
+        <div className='grid p-4 w-full absolute bottom-[.5px] left-0 rounded-lg'>
+          <p className='flex justify-between h-full p-1 bg-white mb-2'>
+            <span className='font-light'>Total:</span>
             <span className='font-bold'>${TotalPrice(addProducts)}</span>
           </p>
+          <button onClick={() => {
+            handleCheckout();
+          }}
+          className='bg-black text-white duration-300 rounded-lg w-full p-3 font-light'
+          >Checkout</button>
         </div>
     </aside>
   )
