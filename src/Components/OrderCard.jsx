@@ -3,7 +3,7 @@ import { GrClose } from 'react-icons/gr'
 
 function OrderCard(props) {
     
-    const { name, imageUrl, price } = props;
+    const { id, name, imageUrl, price, deleteProducts } = props;
 
     return (
         <div className='flex justify-between items-center'>
@@ -15,7 +15,7 @@ function OrderCard(props) {
             </div>
             <div className='flex items-center gap-2'>
                 <p className='text-lg font-medium'>{price}</p>
-                <GrClose className='cursor-pointer'/>
+                <GrClose onClick={()=>{deleteProducts(id)}} className='cursor-pointer'/>
             </div>
         </div>
   )

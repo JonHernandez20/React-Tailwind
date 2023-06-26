@@ -6,8 +6,13 @@ import OrderCard from "./OrderCard";
 
 
 function Checkout() {
-  const { menuFunc, closeMenu, addProducts } = useContext(ShoppingCartContext);
+  const { menuFunc, closeMenu, addProducts, setAddProducts } = useContext(ShoppingCartContext);
   
+  const deleteProduct = (id) => {
+    const filterProducts = addProducts.filter(product => product.id != id);
+    setAddProducts(filterProducts);
+  }
+
   return (
     <aside 
     className={` ${menuFunc ? 'flex' : 'hidden'} w-[360px] h-[calc(100vh-68px)] flex-col gap-2 fixed top-[68px] right-0 border border-black rounded-lg bg-white p-4`}>
@@ -22,9 +27,11 @@ function Checkout() {
                 addProducts.map(item => (
                     <OrderCard 
                         key={item.id}
+                        id={item.id}
                         name={item.title}
                         price={item.price}                    
                         imageUrl={item.images}
+                        deleteProducts={deleteProduct}
                     />
                 ))
             }
