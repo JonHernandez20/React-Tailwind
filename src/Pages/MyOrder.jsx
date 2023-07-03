@@ -23,7 +23,7 @@ function MyOrder() {
         <h1>My Order 🐆</h1>
       </div>
       
-      <div className='grid px-2 gap-2 overflow-y-scroll'>
+      <div className='grid px-2 gap-2 overflow-y-scroll w-96'>
         {
             order?.[indexPath]?.products.map(item => (
                 <OrderCard 
