@@ -8,7 +8,7 @@ import OrderCard from "./OrderCard";
 
 
 function Checkout() {
-  const { menuFunc, closeMenu, addProducts, setAddProducts, setOrder, order } = useContext(ShoppingCartContext);
+  const { menuFunc, closeMenu, addProducts, setAddProducts, setOrder, order, setSearch } = useContext(ShoppingCartContext);
   
   const deleteProduct = (id) => {
     const filterProducts = addProducts.filter(product => product.id != id);
@@ -25,6 +25,7 @@ function Checkout() {
     setOrder([...order, orderToAdd]);
     setAddProducts([]);
     closeMenu();
+    setSearch('');
   };
 
   return (

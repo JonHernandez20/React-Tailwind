@@ -6,20 +6,17 @@ import Layout from '../Components/Layout';
 import Detail from '../Components/Detail';
 
 function Home() {
-  const { items, setSearch, search, filterItems } = useContext( ShoppingCartContext );
-  console.log(search);
+  const { setSearch, filterItems } = useContext( ShoppingCartContext );
   const viewProducts = () => {
-    if(search == '') {
-      return (
-        items?.map(item => (<Card 
+    if(filterItems?.length > 0) {
+      return(
+        filterItems?.map(item => (<Card 
         key={ item.id }
         data={ item } /> ))
       );
     } else {
       return (
-        filterItems?.map(item => (<Card 
-          key={ item.id }
-          data={ item } /> ))
+        <div>I&m sorry, don&t a product...</div>
       );
     }
   }

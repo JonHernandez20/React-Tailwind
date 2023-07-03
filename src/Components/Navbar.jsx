@@ -23,7 +23,7 @@ function Navbar() {
                 <NavLink 
                     to='/all'
                     onClick={() => {
-                        setCategory('all')
+                        setCategory('')
                     }}
                     className={({ isActive }) =>
                         isActive ? "underline text-gray-300" : ""}>
