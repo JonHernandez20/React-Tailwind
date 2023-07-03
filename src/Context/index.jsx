@@ -8,13 +8,30 @@ export const ShoppingCartProvider = ({ children }) => {
     // Contador de productos
     const [count, setCount] = useState(0);
 
+    // Buscador de productos
+    const [search, setSearch] = useState('');
+
     // Renderizado de productos
     const [items, setItems] = useState(null);
+
     useEffect(() => {
         fetch('https://api.escuelajs.co/api/v1/products')
           .then(res => res.json())
           .then(data => setItems(data))
     }, [])
+
+    // Filtrado por busqueda
+    const [filterItems, setFilterItems] = useState(null);
+
+    const filterSearch = (i, searchByTitle) => {
+        return i?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
+    }
+
+    useEffect(() => {
+        fetch('https://api.escuelajs.co/api/v1/products')
+          .then(res => res.json())
+          .then(data => setFilterItems(filterSearch(data, search)))
+    }, [items, search])
 
     // Estado que identifica al aside si esta abierto o cerrado.
     const [openFunc, setOpenFunc] = useState(false);
@@ -35,9 +52,6 @@ export const ShoppingCartProvider = ({ children }) => {
     // Shopping order
     const [order, setOrder] = useState([])
     
-    // Buscador de productos
-    const [search, setSearch] = useState('');
-    console.log(search)
     return (
         <ShoppingCartContext.Provider value={{
             count,
@@ -59,6 +73,8 @@ export const ShoppingCartProvider = ({ children }) => {
             setOrder,
             search,
             setSearch,
+            filterItems,
+            setFilterItems,
         }}>
             { children }
         </ShoppingCartContext.Provider>

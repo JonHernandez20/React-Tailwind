@@ -6,7 +6,23 @@ import Layout from '../Components/Layout';
 import Detail from '../Components/Detail';
 
 function Home() {
-  const { items, setSearch } = useContext( ShoppingCartContext );
+  const { items, setSearch, search, filterItems } = useContext( ShoppingCartContext );
+  console.log(search);
+  const viewProducts = () => {
+    if(search == '') {
+      return (
+        items?.map(item => (<Card 
+        key={ item.id }
+        data={ item } /> ))
+      );
+    } else {
+      return (
+        filterItems?.map(item => (<Card 
+          key={ item.id }
+          data={ item } /> ))
+      );
+    }
+  }
 
   return (
     <Layout>
@@ -16,12 +32,7 @@ function Home() {
       className='border border-black p-3 rounded-lg w-80 mb-4 focus:outline-none'
       onChange={(event) => setSearch(event.target.value)}/>
       <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg'>
-        {
-          items?.map(item => (<Card 
-            key={ item.id }
-            data={ item }
-            />))
-        }
+        { viewProducts() }
       </div>
       <Detail />
     </Layout>
