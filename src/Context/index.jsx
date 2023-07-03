@@ -10,6 +10,11 @@ export const ShoppingCartProvider = ({ children }) => {
 
     // Renderizado de productos
     const [items, setItems] = useState(null);
+    useEffect(() => {
+        fetch('https://api.escuelajs.co/api/v1/products')
+          .then(res => res.json())
+          .then(data => setItems(data))
+    }, [])
 
     // Estado que identifica al aside si esta abierto o cerrado.
     const [openFunc, setOpenFunc] = useState(false);
@@ -29,14 +34,10 @@ export const ShoppingCartProvider = ({ children }) => {
 
     // Shopping order
     const [order, setOrder] = useState([])
-
-    // Quita el error de 'children'.
-    useEffect(() => {
-        fetch('https://api.escuelajs.co/api/v1/products')
-          .then(res => res.json())
-          .then(data => setItems(data))
-    }, [])
     
+    // Buscador de productos
+    const [search, setSearch] = useState('');
+    console.log(search)
     return (
         <ShoppingCartContext.Provider value={{
             count,
@@ -56,6 +57,8 @@ export const ShoppingCartProvider = ({ children }) => {
             setMenuFunc,
             order,
             setOrder,
+            search,
+            setSearch,
         }}>
             { children }
         </ShoppingCartContext.Provider>
