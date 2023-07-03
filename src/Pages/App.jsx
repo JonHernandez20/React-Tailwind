@@ -14,6 +14,12 @@ import Checkout from '../Components/Checkout';
 const AppRoutes = () => {
   let routes = useRoutes([
     { path: '/', element: <Home /> },
+    { path: '/clothes', element: <Home /> },
+    { path: '/all', element: <Home /> },
+    { path: '/electronics', element: <Home /> },
+    { path: '/furniture', element: <Home /> },
+    { path: '/toys', element: <Home /> },
+    { path: '/others', element: <Home /> },
     { path: '/myAccount', element: <MyAccount /> },
     { path: '/myOrder', element: <MyOrder /> },
     { path: '/myOrders', element: <MyOrders /> },

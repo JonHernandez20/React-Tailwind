@@ -27,11 +27,36 @@ export const ShoppingCartProvider = ({ children }) => {
         return i?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
     }
 
+    // Filtrado por categoria
+    const [category, setCategory] = useState('');
+    const filterSearchCategory = (i, searchByCategory) => {
+        return i?.filter(item => item.category.name.toLowerCase().includes(searchByCategory.toLowerCase()));
+    }
+
+    const filterBy = (searchType, items, searchByTitle, searchByCategory) => {
+        if (searchType === 'BY_TITLE') {
+            return filterSearch(items, searchByTitle)
+        }
+
+        if (searchType === 'BY_CATEGORY') {
+            return filterSearchCategory(items, searchByCategory)
+        }
+
+        if (searchType === 'BY_TITLE_AND_CATEGORY') {
+            return filterSearchCategory(items, searchByCategory).filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+        }
+
+        if (!searchType) {
+            return items
+        }
+    }
+
     useEffect(() => {
-        fetch('https://api.escuelajs.co/api/v1/products')
-          .then(res => res.json())
-          .then(data => setFilterItems(filterSearch(data, search)))
-    }, [items, search])
+        if (search && category) setFilterItems(filterBy('BY_TITLE_AND_CATEGORY', items, search, category))
+        if (search && !category) setFilterItems(filterBy('BY_TITLE', items, search, category))
+        if (!search && category) setFilterItems(filterBy('BY_CATEGORY', items, search, category))
+        if (!search && !category) setFilterItems(filterBy(null, items, search, category))
+      }, [items, search, category])
 
     // Estado que identifica al aside si esta abierto o cerrado.
     const [openFunc, setOpenFunc] = useState(false);
@@ -75,6 +100,8 @@ export const ShoppingCartProvider = ({ children }) => {
             setSearch,
             filterItems,
             setFilterItems,
+            category,
+            setCategory,
         }}>
             { children }
         </ShoppingCartContext.Provider>
